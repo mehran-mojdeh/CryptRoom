@@ -10,15 +10,15 @@ const {
   DATABASE_URL
 } = process.env
 
-let pool;
+let client;
 if(DATABASE_URL) {
-  pool = new Pool({
+  client = new Pool({
     connectionString: DATABASE_URL,
     ssl: true
   });
 }
 else {
-  pool = new Client({
+  client = new Client({
     user: DATABASE_USER,
     password: DATABASE_PASSWORD,
     host: DATABASE_HOST,
@@ -26,7 +26,14 @@ else {
     database: DATABASE_NAME,
     ssl: true
   });
-  pool.connect();
+  client.connect().then(x => console.log('Database connected.'))
+    .catch(e => console.error(e));
 }
-
-module.exports = pool;
+module.exports = async function _query(query, values) {
+  var result = await client.query({
+      rowMode: 'array',
+      text: query,
+      values
+  });
+  return result.rows
+}
