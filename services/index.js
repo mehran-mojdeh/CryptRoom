@@ -39,11 +39,7 @@ router.post('/messages', async(req, res) => {
   }
 
   await Messages.sendMessage(name, message, signiture)
-  .then(d => {
-    if (d === 'OK') {
-      res.status(200).send();
-    }
-  })
+  .then(d => res.status(200).json(d))
   .catch(e => {
     console.error(e);
     res.status(500).send();

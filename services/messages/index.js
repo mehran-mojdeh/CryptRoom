@@ -14,8 +14,7 @@ module.exports = {
       'INSERT INTO message (name, msg, sign) VALUES($1, $2, $3)',
       [name, message, signiture])
     .then(d => {
-      console.log(d);
-      return 'OK';
+      return { name, message, signiture };
     })
     .catch(e => {
       throw new Error(e);
