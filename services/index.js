@@ -3,7 +3,7 @@ const router = express.Router()
 
 const Messages = require('./messages');
 
-app.get('/messages', async(req, res) => {
+router.get('/messages', async(req, res) => {
   const messages = await Messages.getMessages()
   .then(d => d)
   .catch(e => console.error(e));
