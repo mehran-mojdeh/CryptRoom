@@ -16,7 +16,7 @@ const services = require('./services');
 app.use('/api', services);
 
 // views
-// app.use(express.static('views'));
+app.use(express.static('views'));
 
 
 app.listen(port = PORT||3000, () => {
