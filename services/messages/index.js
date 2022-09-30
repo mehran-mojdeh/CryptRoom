@@ -1,7 +1,9 @@
 const _query = require('../../db');
 
 // Delete old messages
-setInterval(_query('DELETE FROM message WHERE "date" < CURRENT_DAY - 1', []), 3600000);
+setInterval(() => {
+  _query("DELETE FROM message WHERE date < current_date::timestamp - interval '2 day'", [])
+}, 3600000);
 
 module.exports = {
   getMessages: async() => {
