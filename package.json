@@ -4,7 +4,8 @@
   "description": "Simple chatroom but crypted.",
   "main": "index.js",
   "engines": {
-    "node": "18.x"
+    "node": "18.x",
+    "npm": "8.x"
   },
   "scripts": {
     "start": "node index.js",
