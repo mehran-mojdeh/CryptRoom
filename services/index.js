@@ -23,13 +23,13 @@ router.get('/messages', async(req, res) => {
     throw e;
   });
   // formating data
-  const data = messages.map(m => {return {'name':m[0], 'message': m[1], 'signiture': m[2]}});
+  const data = messages.map(m => {return {'name':m[0], 'message': m[1], 'signature': m[2]}});
   res.status(200).json({data, last})
 });
 
 router.post('/messages', async(req, res) => {
-  const {name, message, signiture} = req.body;
-  if (!name || !message || !signiture) {
+  const {name, message, signature} = req.body;
+  if (!name || !message || !signature) {
     res.status(400).json({message: 'Bad request!'});
     return;
   }
@@ -45,12 +45,12 @@ router.post('/messages', async(req, res) => {
     return;
   }
   const sign_pattern = /^[a-f0-9]{64}/g
-  if (!sign_pattern.exec(signiture)) {
+  if (!sign_pattern.exec(signature)) {
     res.status(400).json({message: 'Invalid input.'});
     return;
   }
 
-  await Messages.sendMessage(name, message, signiture)
+  await Messages.sendMessage(name, message, signature)
   .then((d) => {
     generateLast();
     res.status(200).json({data: d, last})
