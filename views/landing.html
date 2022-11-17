@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    min-width: 222px;
+    background-color: #d3d3d3;
+  }
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.header {
+  width: 100%;
+  display: block;
+  position: fixed;
+  z-index: 10;
+  text-align: center;
+  background-color: #ededed;
+  box-shadow: 0 -5px 30px 0px black;
+}
+.brand {
+  width: 20vh;
+  margin: auto;
+  margin-top: .5em;
+}
+.brand .logo {
+  height: 4vh;
+  min-height: 2em;
+  padding: 3%;
+  display: block;
+  float: left;
+}
+.brand span {
+  font-size: 3vh;
+  display: block;
+  float: left;
+  padding-top: 4%;
+}
+.brand p {
+  width: 100%;
+  font-size: 2vh;
+  text-align: left;
+  margin-left: 3%;
+  margin-top: -.5vh;
+  float: left;
+  z-index: 13;
+}
+.mySlides {display: none}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  padding-top: 12vh;
+  display: block;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  width: fit-content;
+  padding: 1ch;
+  margin: auto  ;
+  border-radius: 1rem;
+  font-weight: bold;
+  transition: 0.6s ease;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  background-color: black;
+  float: right;
+  color: #e4e4e4;
+  border-radius: 1rem;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Caption text */
+.text {
+  direction: rtl;
+  font-size: 2rem;
+  margin: 0 6ch 0 3ch;
+  text-align: right;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 500px) {
+  .prev, .next,.text {font-size: 1.2rem}
+}
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">
+      <svg class="logo" viewBox="0 50 600 500">
+        <path fill="rgba(0, 0, 0, 1.0)" d="M436.123,152.511L436.123,152.511c0,6.266-5.079,11.345-11.345,11.345h-15.127    c-6.266,0-11.345-5.079-11.345-11.345l0,0c0-6.266,5.079-11.345,11.345-11.345h15.127    C431.044,141.165,436.123,146.245,436.123,152.511z M197.871,202.934c-7.646,0-13.867,6.221-13.867,13.867    c0,7.646,6.221,13.867,13.867,13.867s13.867-6.221,13.867-13.867C211.738,209.155,205.517,202.934,197.871,202.934z     M340.831,297.479c-7.646,0-13.866,6.221-13.866,13.866s6.221,13.867,13.866,13.867c7.646,0,13.867-6.221,13.867-13.867    S348.477,297.479,340.831,297.479z M599.309,281.215c4.602,24.802-14.404,46.518-38.386,46.518    c-17.602,0-32.512-11.703-37.386-27.733H378.217c-4.874-16.03-19.784-27.733-37.386-27.733c-23.988,0-42.997,21.724-38.384,46.532    c2.888,15.534,15.362,28.023,30.894,30.924c20.747,3.875,39.323-8.77,44.876-27.032h73.033L249.195,524.747    c-9.548,9.548-25.028,9.548-34.575,0L7.161,317.287c-9.548-9.547-9.548-25.027,0-34.574L214.62,75.253    c9.548-9.548,25.028-9.548,34.576,0l65.911,65.912h56.727c6.469,0,11.673,5.413,11.33,11.956    c-0.321,6.135-5.828,10.735-11.971,10.735h-90.121c-6.469,0-11.672,5.412-11.329,11.955c0.321,6.135,5.827,10.735,11.97,10.735    l186.615,0c6.266,0,11.345,5.08,11.345,11.345l0,0c0,6.266-5.079,11.345-11.345,11.345H236.201    c-1.789-9.081-6.727-17.042-13.634-22.691c-6.736-5.509-15.334-8.824-24.695-8.824c-23.021,0-41.456,20.009-38.828,43.551    c1.954,17.502,15.949,31.875,33.4,34.238c18.45,2.498,34.878-7.977,41.456-23.583h183.314c6.469,0,11.672,5.412,11.329,11.955    c-0.321,6.135-5.827,10.735-11.97,10.735h-22.797c-7,0-12.521,6.34-11.13,13.592c1.033,5.389,6.063,9.099,11.55,9.099h129.34    c0.832-2.738,1.968-5.342,3.35-7.791c7.743-13.714,23.499-22.33,40.889-19.355C583.58,252.868,596.383,265.45,599.309,281.215z     M574.788,288.655c0-7.646-6.22-13.866-13.866-13.866s-13.867,6.221-13.867,13.866c0,7.646,6.221,13.867,13.867,13.867    S574.788,296.3,574.788,288.655z"></path>
+      </svg>
+      <span>CryRoom</span>
+      <p>Encrypted chatroom</p>
+    </div>
+  </div>
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="text">
+    <p>
+      <b>سلام هموطن من،
+        <br>
+         سلام همدرد من،
+         <br>
+          سلام دوست من</b>
+      <br />
+      اینجا یه پلتفرم جدیده، واسه اینکه با خیال راحت حرف بزنی، بدون اینکه کسی بشناسدت، یا کسی بتونه به هیچ شکلی پیدات کنه.
+      <br>
+      از کجا مطمئنیم؟ از اونجا که وقتی اومدی توی این صفحه هیچ اطلاعاتی ازت ثبت نشده، میتونی خودت هم توی مجوزهای سایت ببینی، هیچی نیست. 
+      <br>
+      وقتی هیچی نداریم، چطور کس دیگه میخواد از ما بدزده؟ 😁
+    </p>
+    <a class="next" onclick="plusSlides(1)">❮ بعدی</a>
+  </div>
+
+</div>
+
+<div class="mySlides fade">
+  <div class="text">
+    <p>
+      <b>چجوری باید اینجا مسج بدی؟</b>
+      <br>
+نه لازمه شماره بزنی، نه ایمیل، نه هیچی، پایین اون بلیطی که بهت دادن یه نوشته هست، اون رو به عنوان رمز استفاده کن و نام کاربری رو هر چی دوست داری بزن. اینطوری میتونی با همه هم‌رزم‌ها و هم‌رمزهات ارتباط برقرار کنی، میتونی بگی فردا کدوم‌ور میری، یا بگی خبردار شدی که کجا چه اتفاقی داره میفته.
+<br>
+اصن از اون بهتر، میتونی با کسایی که بهشون <b>اعتماد</b> پیدا کردی یه رمز جدید هماهنگ کنید و مکالمات خودتون رو داشته باشید. یچی مثل یه گروه مجزا. 😉
+    </p>
+    <a class="prev" onclick="plusSlides(-1)">قبلی ❯</a>
+    <a class="next" onclick="plusSlides(1)">❮ بعدی</a>
+  </div>
+
+</div>
+
+<div class="mySlides fade">
+  <div class="text">
+    <p>
+      <b>اینجا چقدر امنه؟</b>
+      <br>
+      اینجا هر پیامی بدی تو دستگاه خودت رمزگذاری میشه و تا کسی رمزش رو ندونه نمیتونه بازش کنه، حتی خود ما هم نمیتونیم بخونیمش.
+      <br>
+      از طرفی هر پیام بعد از ۴۸ ساعت کاملا از سرور پاک میشه و بعدش قابل بازیابی نیست.
+      <br>
+      پس خیالت راحت باشه!
+    </p>
+    <a class="prev" onclick="plusSlides(-1)">قبلی ❯</a>
+    <a class="next" onclick="plusSlides(1)">❮ بعدی</a>
+  </div>
+</div>
+
+<div class="mySlides fade">
+  <div class="text">
+    <p>
+      ما تازه شروع کردیم ولی قول میدیم برای آزادی ایران هر روز بهترش کنیم، اگه ایده ای داری که دوست داری ما بدونیم هم، جای رمز بزن idea و ایده ت رو بگو، ما هم سعی میکنیم سریع اجراش کنیم.
+      <br>
+      یا اگر خودت برنامه نویسی و دوست داری کمک کنی به 
+      <a href="https://github.com/orgs/CryRoom/repositories" style="color:#000000">گیت هابمون</a>
+      یه سر بزن.
+      <br>
+      فقط همیشه حواست باشه خودت رو لو ندی!
+      <br>
+      <br>
+      <b>با هم برای ایران 🤍🕊</b>
+    </p>
+    <a class="prev" onclick="plusSlides(-1)">قبلی ❯</a>
+    <a class="next" href="/">❮ شروع</a>
+  </div>
+</div>
+<!--
+<a class="prev" onclick="plusSlides(-1)">❮</a>
+<a class="next" onclick="plusSlides(1)">❯</a>
+-->
+</div>
+<br>
+<br>
+
+<div style="text-align:center; margin-top: 3rem;">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+  <span class="dot" onclick="currentSlide(4)"></span> 
+</div>
+
+<script>
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+
+</body>
+</html> 
